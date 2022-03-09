@@ -209,11 +209,11 @@ h2 {
 
 
 .ladybag-navbar {
-    font-size: 18px;
+    font-size: 22px;
 }
 
 .lady-navbar {
-    font-size: 12px;
+    font-size: 15px;
 }
 
 .sidebar {
@@ -427,6 +427,9 @@ input[type=number] {
 
 .bg-c-pink {
     background: linear-gradient(45deg,#FF5370,#ff869a);
+}
+.container{
+    margin-top: 80px;
 }
 
 

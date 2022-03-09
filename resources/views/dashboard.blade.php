@@ -2,15 +2,16 @@
 @section('title', 'Dashboard LadyBag')
 
 @section('content')
-<div class="py-5 px-4">
+<div class="py-3 px-5">
   <div class="row">
     <div class="col-3">
+        <h5>Dashboard</h5>
+        <h7 style="color:gray">Aktivitas Toko LadyBag</h7>
     </div>
-  </div>
     <div class="container-fluid">
         <div class="animated fadeIn">
         <div class="row">
-        <div class="col-md-4 ">
+        <div class="col-md-4 mt-3">
             <div class="card bg-c-blue order-card">
                 <div class="card-block">
                     <h6 class="m-b-20">Jumlah Pendapatan</h6>
@@ -20,7 +21,7 @@
             </div>
         </div>
         
-        <div class="col-md-4 ">
+        <div class="col-md-4 mt-3">
             <div class="card bg-c-green order-card">
                 <div class="card-block">
                     <h6 class="m-b-20">Jumlah Produk</h6>
@@ -30,7 +31,7 @@
             </div>
         </div>
         
-        <div class="col-md-4 ">
+        <div class="col-md-4 mt-3">
             <div class="card bg-c-yellow order-card">
                 <div class="card-block">
                     <h6 class="m-b-20">Jumlah Kategori Produk</h6>
@@ -175,17 +176,6 @@
     label: 'Grafik Pendapatan 2022',
     data: [ jan, feb, mar, apr, mei, jun, jul, ag, sep, okt, nov, des],
     backgroundColor: [
-      '#f05353',
-      '#6fa8dc',
-      '#f05353',
-      '#6fa8dc',
-      '#f05353',
-      '#6fa8dc',
-      '#f05353',
-      '#6fa8dc',
-      '#f05353',
-      '#6fa8dc',
-      '#f05353',
       '#6fa8dc',
     ],
   }]
@@ -195,6 +185,9 @@
     type: 'bar',
     data: data3,
     options: {
+    legend: {
+        display: false
+    },
     scales: {
       y: {
         beginAtZero: true

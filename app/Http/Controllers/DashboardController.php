@@ -9,16 +9,17 @@ use App\User;
 use DB;
 use PDF;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Carbon;
 use App\Exports\PendapatanExport;
 use Maatwebsite\Excel\Facades\Excel;
 
 class DashboardController extends Controller
 {
-    // public function __construct()
-    // {
-    //     $this->middleware('auth');
-    // }
+     public function __construct()
+     {
+        $this->middleware('auth');
+     }
 
     public function index()
     {
