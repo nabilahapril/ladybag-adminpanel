@@ -73,7 +73,7 @@
                 </div>
                 <div class="card text-white py-3 d-md-down-none" style="width:20%">
                     <div class="card-body text-center" style="margin-top:60px">
-                        <img src="images/Logo.png">
+                        <img src="https://res.cloudinary.com/dfhcmm3b2/image/upload/v1647373095/Logo_oweayw.png">
                         
                     </div>
                 </div>
