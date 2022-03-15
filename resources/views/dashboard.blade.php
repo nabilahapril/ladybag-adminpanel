@@ -138,7 +138,7 @@
         </div>
 </div>
     </div>
-</main>
+</div>
 
 @endsection
 @section('js')

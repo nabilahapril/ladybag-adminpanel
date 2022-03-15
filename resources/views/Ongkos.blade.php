@@ -24,7 +24,6 @@
                                 <table class="table table-hover table-bordered">
                                     <thead>
                                         <tr>
-                                            <th>Id Kecamatan</th>
                                             <th>Kecamatan</th>
                                             <th>Ongkos Kirim</th>
                                             <th>Aksi</th>
@@ -33,16 +32,13 @@
                                     <tbody>
                                         @forelse ($district as $val)
                                         <tr>
-                                            <td><strong>{{ $val->id }}</strong></td>
+                                         
                                             <td>{{$val->name}}</td>
                                             <td>Rp {{ number_format($val->price)}}</td>
                                             <td>
-                                                <form action="{{ route('ongkos.destroy', $val->id) }}" method="post">
-                                                    @csrf
-                                                    @method('DELETE')
+                                               
                                                     <a href="{{ route('ongkos.edit', $val->id) }}" class="btn btn-warning btn-sm">Edit</a>
-                                                    <button class="btn btn-danger btn-sm">Hapus</button>
-                                                </form>
+                                                  
                                             </td>
                                         </tr>
                                         @empty

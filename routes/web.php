@@ -33,7 +33,7 @@ Route::group(['middleware' => 'auth'], function() {
     });
 
     Route::group(['prefix' => 'reports'], function() {
-        Route::get('/order', 'DashboardController@orderReport')->name('report.order');
+        Route::get('/', 'DashboardController@orderReport')->name('report.order');
         Route::get('/order/pdf/{daterange}', 'DashboardController@orderReportPdf')->name('report.order_pdf');
         Route::get('/order/excel/{daterange}', 'DashboardController@orderReportExcel')->name('report.order_excel');
     });

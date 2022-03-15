@@ -22,7 +22,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="description">Deskripsi</label>
-                                    <textarea name="description" id="description" class="form-control">{{ $product->description }}</textarea>
+                                    <textarea name="description" id="description" class="form-control" rows="5">{{ $product->description }}</textarea>
                                     <p class="text-danger">{{ $errors->first('description') }}</p>
                                 </div>
                             </div>

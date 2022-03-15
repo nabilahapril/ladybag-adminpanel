@@ -6,7 +6,7 @@ use App\Image;
 use App\Product;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
-use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
+use Unicodeveloper\Cloudinary\Facades\Cloudinary;
 
 class ImageController extends Controller
 {

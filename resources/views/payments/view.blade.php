@@ -34,7 +34,7 @@
                                             <td>{{ $payment->address }} {{ $payment->district->name }}</td>
                                         </tr>
                                         <tr>
-                                            <th>Payment Status</th>
+                                            <th>Status Pesanan</th>
                                             <td>{{ $payment->status->status}}</td>
                                         </tr>
                                         @if ($payment->status_id == 1)
@@ -65,8 +65,8 @@
                                     <table class="table table-bpaymentd table-hover">
                                         <tr>
                                             <th>Nama Produk</th>
-                                            <th>Style</th>
-                                            <th>Quantity</th>
+                                            <th>Warna</th>
+                                            <th>Jumlah</th>
                                        
                                         </tr>
                                         @foreach ($line_item_clone as $row)

@@ -49,7 +49,7 @@
             </a>
         </li>
         <li class="my-2">
-            <a href="{{url('/reports/order')}}" class="nav-link text-black  {{ request()->is('reports*') ? 'active' : '' }}">
+            <a href="{{url('/reports')}}" class="nav-link text-black  {{ request()->is('reports*') ? 'active' : '' }}">
             <i class="fa fa-file-text" aria-hidden="true"></i>
                 <span class="ml-3 sidebar-text">
                     Laporan Pesanan
