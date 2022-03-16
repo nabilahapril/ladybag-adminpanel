@@ -10,7 +10,7 @@
                     <div class="card">
                         <div class="card-header">
                             <h4 class="card-title">
-                                List Product
+                                List Produk
                                 <div class="float-right">
                                  
                                     <a href="{{ route('product.create') }}" class="btn btn-primary btn-sm">Tambah</a>

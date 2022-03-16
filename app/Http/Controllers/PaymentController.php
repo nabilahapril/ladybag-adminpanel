@@ -9,6 +9,7 @@ use App\Status;
 use App\line_item_clone;
 use App\User;
 use App\Cart;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Http;
 
@@ -27,14 +28,26 @@ class PaymentController extends Controller
         return view('payments.index', compact('payments'));
     }
 
-    public function view($cart_id)
+    public function view($id)
     {
-        $payment = Payment::where('cart_id', $cart_id)->first();
-        $status = Status::get();
+        $payment= DB::table('payments')
+        ->join('statuses', 'payments.status_id', '=', 'statuses.id')
+        ->select('statuses.status','payments.cart_id','payments.fullname','payments.address','payments.phone')
+        ->where('payments.cart_id', '=', $id)
+        ->first();
         $district= District::get();
-        $line_item_clone=line_item_clone::where('cart_id', $cart_id)->get();
+        $line_item_clone=DB::table('line_item_clones')
+        ->join('images', 'images.id', '=', 'line_item_clones.image_id')
+        ->select('line_item_clones.product_name','line_item_clones.quantity','images.warna')
+        ->where('line_item_clones.cart_id', '=', $id)->get();
+        
         $user=User::get();
-        return view('payments.view', compact('payment', 'district','status','line_item_clone','user'));
+        return ([
+            "payment" => $payment,
+            "district" => $district,
+            "line_item_clone" => $line_item_clone,
+            "user"=>$user
+        ]);
     }
 
     public function destroy($cart_id)

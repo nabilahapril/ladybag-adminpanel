@@ -15,7 +15,7 @@
             <div class="card bg-c-blue order-card">
                 <div class="card-block">
                     <h6 class="m-b-20">Jumlah Pendapatan</h6>
-                    <h2 class="text-right"><i class="fa fa-money f-left"></i><span>{{$payments}}</span></h2>
+                    <h2 class="text-right"><i class="fa fa-money f-left"></i><span>Rp {{ number_format($payments)}}</span></h2>
                     
                 </div>
             </div>
@@ -42,7 +42,7 @@
         </div>
                 <div class="col-md-12">
       <div class="bg-white p-3 mb-3 rounded shadow">
-        <div class="text-muted btn-sm mb-3">Grafik Pendapatan 2022</div>
+        <div class="text-muted btn-sm mb-3">Grafik Pendapatan {{ now()->year }}</div>
         <div>
           <canvas id="chartPendapatan"></canvas>
         </div>
@@ -173,7 +173,7 @@
     'Desember',
   ],
   datasets: [{
-    label: 'Grafik Pendapatan 2022',
+    label: 'Grafik Pendapatan {{ now()->year }}',
     data: [ jan, feb, mar, apr, mei, jun, jul, ag, sep, okt, nov, des],
     backgroundColor: [
       '#6fa8dc',

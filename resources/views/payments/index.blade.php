@@ -55,7 +55,7 @@
                                                     <tr>
                                                         <td>{{ $no }}</td>
                                             <td>
-                                            <label><strong>Nama:</strong> {{ $row->user->username }}</label><br>
+                                            <label><strong>Nama:</strong> {{ $row->fullname }}</label><br>
                                                 <label><strong>Telp:</strong> {{ $row->phone }}</label><br>
                                                 <label><strong>Alamat:</strong> {{ $row->address }} {{ $row->district->name }} </label>
                                             </td>
@@ -66,16 +66,10 @@
                                                
                                             </td>
                                             <td>
-                                           
-                                                <form action="{{ route('payments.destroy', $row->cart_id) }}" method="post">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    @if ($row->status_id == 2)
+                                            @if ($row->status_id == 2)
                                             <a href="{{ route('payments.approve_payment', $row->id) }}" class="btn btn-primary btn-sm">Terima Pembayaran</a>
-                                            @endif
-                                            <a href="{{ route('payments.view', $row->cart_id) }}" class="btn btn-warning btn-sm">Lihat</a>
-                                                    
-                                                </form>
+                                            @endif 
+                                                <div data-toggle="modal" data-target="#staticBackdrop" style="cursor: pointer;" data-id="{{ $row->cart_id }}" id="detail"><a class="btn btn-warning btn-sm">Lihat</a></div>
                                             </td>
                                         </tr>
                                         @empty
@@ -85,7 +79,64 @@
                                         @endforelse
                                     </tbody>
                                 </table>
-                            </div>
+                                <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                                <div class="modal-dialog modal-lg">
+                                    <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h6 class="modal-title">Detail Pesanan</h6>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="description">
+                                        <div class="row my-3">
+                                            <div class="col-5">
+                                            Nama
+                                            </div>
+                                            <div class="col-7" id="nama">
+                                            </div>
+                                        </div>
+                                        <div class="row my-2">
+                                            <div class="col-5">
+                                            Telepon
+                                            </div>
+                                            <div class="col-7" id="telp">
+                                            </div>
+                                        </div>
+                                        <div class="row my-2">
+                                            <div class="col-5">
+                                            Alamat
+                                            </div>
+                                            <div class="col-7" id="alamat">
+                                            </div>
+                                        </div>
+                                        <div class="row my-2">
+                                            <div class="col-5">
+                                            Status Pesanan
+                                            </div>
+                                            <div class="col-7" id="status">
+                                            
+                                            </div>
+                                        </div>
+                                        <div id="desc">
+                                        </div>
+                                        <table class="table">
+                                            <tr>
+                                            <th>Nama Produk</th>
+                                            <th>Warna</th>
+                                            <th>Jumlah</th>
+                                            </tr>
+                                            <tbody id=descc>
+                                            </tbody>
+                                        </table>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer" id="modal-daftar">
+                                    </div>
+                                    </div>
+                                </div>
+                                </div>
                             {!! $payments->links() !!}
                         </div>
                     </div>
@@ -94,4 +145,35 @@
         </div>
     </div>
 </main>
+@endsection
+@section('js')
+    <script type="text/javascript">
+        $('body').on('click', '#detail', function (event) {
+
+        event.preventDefault();
+        var id = $(this).data('id');
+        $.get('/payments/view/' + id , function (data) {
+            $('#nama').text(data.payment.fullname);
+            $('#telp').text(data.payment.phone);
+            $('#alamat').text(data.payment.address);
+            $('#status').text(data.payment.status);
+            var array_desc=[];
+            for (let index = 0; index < data.line_item_clone.length; index++){
+             {
+                array_desc.push({
+                  nama:data.line_item_clone[index].product_name,
+                  warna:data.line_item_clone[index].warna,
+                  jumlah:data.line_item_clone[index].quantity
+                })
+          }
+        }
+          var descc;
+          $.each(array_desc, function(key, value){
+            descc = descc + '<tr><td>'+ value.nama +'</td><td>'+ value.warna +'</td><td>'+ value.jumlah +'</td></tr>'
+          })
+          $('#descc').html(descc);
+        
+        })
+        });
+</script>
 @endsection

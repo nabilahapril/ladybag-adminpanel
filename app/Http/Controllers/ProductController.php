@@ -85,10 +85,12 @@ class ProductController extends Controller
 
     public function destroy($id)
     {
-        $product = Product::find($id);
-        $product->delete();
-        return redirect(route('product.index'))->with(['success' => 'Produk Dihapus!']);
-        
+        $product = Product::withCount(['image'])->find($id);
+        if ($product->image_count == 0) {
+             $product->delete();
+            return redirect(route('product.index'))->with(['success' => 'Produk Dihapus!']);
+        }
+        return redirect(route('category.index'))->with(['error' => 'Kategori Ini Memiliki Warna, Hapus Warna Produk Lebih Dahulu!']);
     }
 
 } 

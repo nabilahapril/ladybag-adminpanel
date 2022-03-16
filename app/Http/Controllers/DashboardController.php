@@ -26,24 +26,24 @@ class DashboardController extends Controller
         $products = Product::count();
         $categories = Category::count();
         $users = User::count();
-        $payments = Payment::sum('total');
+        $payments = Payment::where('status_id','=',3)->sum('total');
         $product = Product::with(['category'])->orderBy('created_at', 'DESC');
         $category = Category::orderBy('name', 'DESC')->get();
         $product = $product->paginate(5);
         $trans = Payment::with(['district','status'])->orderBy('created_at', 'DESC');
         $trans= $trans->paginate(5);
-        $jan = Payment::whereMonth('created_at', '1')->sum('total');
-        $feb = Payment::whereMonth('created_at', '2')->sum('total');
-        $mar = Payment::whereMonth('created_at', '3')->sum('total');
-        $apr = Payment::whereMonth('created_at', '4')->sum('total');
-        $mei = Payment::whereMonth('created_at', '5')->sum('total');
-        $jun = Payment::whereMonth('created_at', '6')->sum('total');
-        $jul = Payment::whereMonth('created_at', '7')->sum('total');
-        $ag= Payment::whereMonth('created_at', '8')->sum('total');
-        $sep = Payment::whereMonth('created_at', '9')->sum('total');
-        $okt = Payment::whereMonth('created_at', '10')->sum('total');
-        $nov = Payment::whereMonth('created_at', '11')->sum('total');
-        $des = Payment::whereMonth('created_at', '12')->sum('total');
+        $jan = Payment::whereYear('created_at','=', date('Y'))->whereMonth('created_at', '1')->where('status_id','=',3)->sum('total');
+        $feb = Payment::whereYear('created_at','=', date('Y'))->whereMonth('created_at', '2')->where('status_id','=',3)->sum('total');
+        $mar = Payment::whereYear('created_at','=', date('Y'))->whereMonth('created_at', '3')->where('status_id','=',3)->sum('total');
+        $apr = Payment::whereYear('created_at','=', date('Y'))->whereMonth('created_at', '4')->where('status_id','=',3)->sum('total');
+        $mei = Payment::whereYear('created_at','=', date('Y'))->whereMonth('created_at', '5')->where('status_id','=',3)->sum('total');
+        $jun = Payment::whereYear('created_at','=', date('Y'))->whereMonth('created_at', '6')->where('status_id','=',3)->sum('total');
+        $jul = Payment::whereYear('created_at','=', date('Y'))->whereMonth('created_at', '7')->where('status_id','=',3)->sum('total');
+        $ag= Payment::whereYear('created_at','=', date('Y'))->whereMonth('created_at', '8')->where('status_id','=',3)->sum('total');
+        $sep = Payment::whereYear('created_at','=', date('Y'))->whereMonth('created_at', '9')->where('status_id','=',3)->sum('total');
+        $okt = Payment::whereYear('created_at','=', date('Y'))->whereMonth('created_at', '10')->where('status_id','=',3)->sum('total');
+        $nov = Payment::whereYear('created_at','=', date('Y'))->whereMonth('created_at', '11')->where('status_id','=',3)->sum('total');
+        $des = Payment::whereYear('created_at','=', date('Y'))->whereMonth('created_at', '12')->where('status_id','=',3)->sum('total');
 
         return view('dashboard', compact('trans','products','categories','payments','users','product','category','jan','feb','mar','apr','mei','jun','jul','ag','sep','okt','nov','des'));
     }
