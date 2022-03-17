@@ -3,7 +3,7 @@
         <a class="navbar-brand" href="#">
             <div class="row ">
                 <div class="col-7">
-                    <img src="ldlogo.png" style="width:190px" class="img-fluid" alt="">
+                    <img src="https://res.cloudinary.com/dfhcmm3b2/image/upload/v1647510869/ldlogo_ejhzjo.png" style="width:190px" class="img-fluid" alt="">
                 </div>
                 <div class="col-2">
                     <div class="ladybag-navbar">

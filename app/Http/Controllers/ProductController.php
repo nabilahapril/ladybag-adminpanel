@@ -34,7 +34,8 @@ class ProductController extends Controller
             'name' => 'required|string|max:100',
             'description' => 'required',
             'category_id' => 'required|exists:categories,id',
-            'price_cents' => 'required|integer'
+            'price_cents' => 'required|integer',
+            'model'=>'required'
         ]);
 
         $product = new Product;

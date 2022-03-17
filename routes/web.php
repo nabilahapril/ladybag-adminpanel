@@ -27,7 +27,7 @@ Route::group(['middleware' => 'auth'], function() {
         Route::get('/', 'PaymentController@index')->name('payments.index');
         Route::get('view/{id}', 'PaymentController@view');
         Route::get('/payment/{id}', 'PaymentController@acceptPayment')->name('payments.approve_payment');
-        Route::post('/payments.done', 'PaymentController@done')->name('payments.done');
+        Route::get('/payments/{id}', 'PaymentController@done')->name('payments.done');
         Route::delete('/{cart_id}', 'PaymentController@destroy')->name('payments.destroy');
       
     });

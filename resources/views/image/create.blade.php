@@ -15,8 +15,12 @@
                             <div class="card-body">
                                 <div class="form-group">
                                     <label for="warna">Warna</label>
-                                    <input type="text" name="warna" class="form-control" value="{{ old('warna') }}" required>
-                                    <p class="text-danger">{{ $errors->first('warna') }}</p>
+                                    <input type="text" name="warna" class="form-control" value="{{ old('warna') }}" >
+                                    @if ($errors->has('warna'))
+                                    <span class="text-danger">
+                                            <label id="basic-error" class="validation-error-label" for="basic">Warna wajib diisi</label>
+                                        </span>
+                                        @endif
                                 </div>
                                
                             </div>
@@ -31,17 +35,25 @@
                                     <select name="product_id" class="form-control">
                                         <option value="">Pilih</option>
                                         @foreach ($product as $row)
-                                        <option value="{{ $row->id }}" {{ old('product_id') == $row->id ? 'selected':'' }}>{{ $row->name }}</option>
+                                        <option value="{{ $row->id }}">{{ $row->name }}</option>
                                         @endforeach
                                     </select>
-                                    <p class="text-danger">{{ $errors->first('product_id') }}</p>
+                                    @if ($errors->has('product_id'))
+                                    <span class="text-danger">
+                                            <label id="basic-error" class="validation-error-label" for="basic">Produk wajib diisi</label>
+                                        </span>
+                                        @endif
                                 </div>
                               
                                
                                 <div class="form-group">
                                     <label for="file">Foto Produk</label>
                                     <input type="file" name="uploadedFileUrl" class="form-control" value="{{ old('uploadedFileUrl') }}">
-                                    <p class="text-danger">{{ $errors->first('uploadedFileUrl') }}</p>
+                                    @if ($errors->has('uploadedFileUrl'))
+                                    <span class="text-danger">
+                                            <label id="basic-error" class="validation-error-label" for="basic">Foto produk wajib diisi</label>
+                                        </span>
+                                        @endif
                                 </div>
                                 <div class="form-group">
                                     <button class="btn btn-primary btn-sm">Tambah</button>
@@ -56,9 +68,3 @@
 </main>
 @endsection
 
-@section('js')
-    <script src="https://cdn.ckeditor.com/4.13.0/standard/ckeditor.js"></script>
-    <script>
-        CKEDITOR.replace('description');
-    </script>
-@endsection

@@ -26,7 +26,7 @@ class DashboardController extends Controller
         $products = Product::count();
         $categories = Category::count();
         $users = User::count();
-        $payments = Payment::where('status_id','=',3)->sum('total');
+        $payments = Payment::whereYear('created_at','=', date('Y'))->where('status_id','=',3)->sum('total');
         $product = Product::with(['category'])->orderBy('created_at', 'DESC');
         $category = Category::orderBy('name', 'DESC')->get();
         $product = $product->paginate(5);

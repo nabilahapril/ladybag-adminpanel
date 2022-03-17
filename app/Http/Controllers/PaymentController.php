@@ -50,28 +50,18 @@ class PaymentController extends Controller
         ]);
     }
 
-    public function destroy($cart_id)
-    {
-        $payment = Payment::where('cart_id', $cart_id)->first();
-        $payment->delete();
-        $line_item_clone=line_item_clone::where('cart_id', $cart_id)->get();
-        $lne_item_clone->delete();       
-        return redirect(route('payments.index'));
-    }
-
     public function acceptPayment($id)
     {
         $payment = Payment::where('id', $id)->first();
         $payment->update(['status_id' => 3]);
-        return redirect()->back();
+        return redirect()->back()->with(['success' => 'Status Diubah!']);
     }
   
-    public function done(Request $request)
+    public function done($id)
     {
-        $payment = Payment::with(['user'])->find($request->payment_id);
+        $payment = Payment::where('id', $id)->first();
         $payment->update(['status_id' => 2]);
-       
-        return redirect()->back();
+        return redirect()->back()->with(['success' => 'Status Diubah!']);
     }
 
 }

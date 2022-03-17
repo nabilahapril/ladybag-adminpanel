@@ -31,8 +31,8 @@ class ImageController extends Controller
     {
         $this->validate($request, [
             'warna' => 'required|string|max:100',
-            'product_id' => 'required|exists:products,id'
-            
+            'product_id' => 'required|exists:products,id',
+            'uploadedFileUrl'=>'required'
         ]);
         $image = new Image;
         $image->warna = $request->input('warna');

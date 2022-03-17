@@ -66,10 +66,12 @@
                                                
                                             </td>
                                             <td>
-                                            @if ($row->status_id == 2)
-                                            <a href="{{ route('payments.approve_payment', $row->id) }}" class="btn btn-primary btn-sm">Terima Pembayaran</a>
+                                            @if ($row->status_id == 1)
+                                            <a href="{{ route('payments.done', $row->id) }}" class="btn btn-primary btn-sm">Lakukan Pengiriman</a>
+                                            @elseif ($row->status_id == 2)
+                                            <a href="{{ route('payments.approve_payment', $row->id) }}" class="btn btn-success btn-sm">Terima Pembayaran</a>
                                             @endif 
-                                                <div data-toggle="modal" data-target="#staticBackdrop" style="cursor: pointer;" data-id="{{ $row->cart_id }}" id="detail"><a class="btn btn-warning btn-sm">Lihat</a></div>
+                                                <button class="btn btn-warning btn-sm" data-toggle="modal" data-target="#staticBackdrop"  data-id="{{ $row->cart_id }}" id="detail">Lihat</button>
                                             </td>
                                         </tr>
                                         @empty

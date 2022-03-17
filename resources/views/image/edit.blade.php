@@ -18,7 +18,11 @@
                                 <div class="form-group">
                                     <label for="warna">Warna</label>
                                     <input type="text" name="warna" class="form-control" value="{{ $image->warna }}" required>
-                                    <p class="text-danger">{{ $errors->first('warna') }}</p>
+                                    @if ($errors->has('warna'))
+                                    <span class="text-danger">
+                                            <label id="basic-error" class="validation-error-label" for="basic">Warna wajib diisi</label>
+                                        </span>
+                                        @endif
                                 </div>
                                
                             </div>
@@ -36,7 +40,11 @@
                                         <option value="{{ $row->id }}" {{ $image->product_id == $row->id ? 'selected':'' }}>{{ $row->name }}</option>
                                         @endforeach
                                     </select>
-                                    <p class="text-danger">{{ $errors->first('product_id') }}</p>
+                                    @if ($errors->has('product_id'))
+                                    <span class="text-danger">
+                                            <label id="basic-error" class="validation-error-label" for="basic">Produk wajib diisi</label>
+                                        </span>
+                                        @endif
                                 </div>
                               
                                
@@ -60,9 +68,3 @@
 </main>
 @endsection
 
-@section('js')
-    <script src="https://cdn.ckeditor.com/4.13.0/standard/ckeditor.js"></script>
-    <script>
-        CKEDITOR.replace('description');
-    </script>
-@endsection

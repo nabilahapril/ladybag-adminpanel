@@ -18,12 +18,20 @@
                                 <div class="form-group">
                                     <label for="name">Nama Produk</label>
                                     <input type="text" name="name" class="form-control" value="{{ $product->name }}" required>
-                                    <p class="text-danger">{{ $errors->first('name') }}</p>
+                                    @if ($errors->has('name'))
+                                    <span class="text-danger">
+                                            <label id="basic-error" class="validation-error-label" for="basic">Nama produk wajib diisi</label>
+                                        </span>
+                                        @endif
                                 </div>
                                 <div class="form-group">
                                     <label for="description">Deskripsi</label>
                                     <textarea name="description" id="description" class="form-control" rows="5">{{ $product->description }}</textarea>
-                                    <p class="text-danger">{{ $errors->first('description') }}</p>
+                                    @if ($errors->has('description'))
+                                    <span class="text-danger">
+                                            <label id="basic-error" class="validation-error-label" for="basic">Deskripsi wajib diisi</label>
+                                        </span>
+                                        @endif
                                 </div>
                             </div>
                         </div>
@@ -40,12 +48,20 @@
                                         <option value="{{ $row->id }}" {{ $product->category_id == $row->id ? 'selected':'' }}>{{ $row->name }}</option>
                                         @endforeach
                                     </select>
-                                    <p class="text-danger">{{ $errors->first('category_id') }}</p>
+                                    @if ($errors->has('category_id'))
+                                    <span class="text-danger">
+                                            <label id="basic-error" class="validation-error-label" for="basic">Kategori wajib diisi</label>
+                                        </span>
+                                        @endif
                                 </div>
                                 <div class="form-group">
                                     <label for="price_cents">Harga</label>
                                     <input type="number" name="price_cents" class="form-control" value="{{ $product->price_cents }}" required>
-                                    <p class="text-danger">{{ $errors->first('price_cents') }}</p>
+                                    @if ($errors->has('price_cents'))
+                                    <span class="text-danger">
+                                            <label id="basic-error" class="validation-error-label" for="basic">Harga wajib diisi</label>
+                                        </span>
+                                        @endif
                                 </div>
                                
                                 <div class="form-group">
