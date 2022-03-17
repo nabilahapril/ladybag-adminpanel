@@ -38,7 +38,7 @@
                                         <tr>
                                             <th>No</th>
                                             <th>Pelanggan</th>
-                                            <th>Subtotal</th>
+                                            <th>Total</th>
                                            
                                         </tr>
                                     </thead>
@@ -49,7 +49,7 @@
                                                     <tr>
                                                         <td>{{ $no }}</td>
                                             <td>
-                                                <label>Nama:</strong> {{$row->user->username}}</label><br>
+                                                <label>Nama:</strong> {{$row->fullname}}</label><br>
                                                 <label><strong>Telp:</strong> {{ $row->phone }}</label><br>
                                                 <label><strong>Alamat:</strong> {{ $row->address }} - {{ $row->district->name }} </label>
                                             </td>
